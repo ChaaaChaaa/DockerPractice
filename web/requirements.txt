@@ -1,0 +1,4 @@
+FLASK==3.0.0
+# MYSQL==0.0.3
+PyMySQL==0.10.1
+cryptography
