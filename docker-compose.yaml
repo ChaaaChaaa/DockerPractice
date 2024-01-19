@@ -20,7 +20,7 @@ services:
   nginx:
     build:
       context: ./web
-      dockerfile: dockerfile.nginx
+      dockerfile: Dockerfile.nginx
     networks:
       - backend
     ports:
@@ -46,6 +46,33 @@ services:
     volumes:
       - ./mysql/conf.d:/etc/mysql/conf.d # MySQL 설정 파일 위치
       - ./mysql/initdb.d/:/docker-entrypoint-initdb.d/  # 데이터베이스 초기화 sql
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 55
+    networks:
+      - backend
+
+  test:
+    build:
+      context: ./web
+      dockerfile: Dockerfile.test
+    volumes:
+      - ./web:/app
+    depends_on:
+      - db
+    environment:
+      MYSQL_ROOT_HOST: ${MYSQL_ROOT_HOST}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    networks:
+      - backend
+
+
 
 networks:
   backend:

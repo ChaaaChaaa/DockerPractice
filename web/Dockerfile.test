@@ -1,0 +1,20 @@
+# Use an official Python runtime as a parent image
+FROM python:3.8-slim
+
+# Set the working directory in the container
+WORKDIR /usr/src/app
+
+# Copy the current directory contents into the container at /usr/src/app
+COPY . .
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Install pytest for running the tests
+RUN pip install pytest python-dotenv
+
+# Define environment variable
+ENV NAME DockerTest
+
+# CMD is not necessary as we will override this when running the tests
+CMD tail -f /dev/null

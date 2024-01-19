@@ -1,4 +1,5 @@
-FLASK==3.0.0
+FLASK
 # MYSQL==0.0.3
 PyMySQL==0.10.1
 cryptography
+jinja2
