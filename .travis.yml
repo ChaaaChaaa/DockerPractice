@@ -13,4 +13,4 @@ script:
   - docker-compose run test pytest
 
 after_success:
-  - echo "Test Success"
+  - echo "CI Test Success"
