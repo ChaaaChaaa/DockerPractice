@@ -1,25 +1,16 @@
 sudo: required
 
+language: generic
+
 services:
   - docker
 
-env:
-  global:
-    - DOCKER_COMPOSE_VERSION=1.29.2
-
 before_install:
   - echo "start Creating an image with dockerfile"
-  - docker --version
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-  - chmod +x /usr/local/bin/docker-compose
-  - docker-compose --version
-
-before_script:
-  - docker-compose up -d --build
+  - docker-compose build
 
 script:
-  - docker-compose exec web pytest
+  - docker-compose run test pytest
 
-after_script:
-  - docker-compose down
+after_success:
+  - echo "Test Success"
