@@ -1,6 +1,18 @@
 version: '3.8'
 
 services:
+  jenkins:
+    build:
+      context: ./jenkins-docker
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - jenkins_home:/var/jenkins_home
+    networks:
+      - backend
+
   web:
     build:
       context: ./web
@@ -76,3 +88,8 @@ services:
 
 networks:
   backend:
+
+volumes:
+  jenkins_home:
+
+
