@@ -4,6 +4,8 @@ import os
 
 app = Flask(__name__)
 
+#test
+
 db_host = 'host.docker.internal'
 #db_host = os.environ.get('MYSQL_ROOT_HOST')
 db_host_password = os.environ.get('MYSQL_ROOT_PASSWORD')
