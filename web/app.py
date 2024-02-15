@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-#test
+#test2
 
 db_host = 'host.docker.internal'
 #db_host = os.environ.get('MYSQL_ROOT_HOST')
