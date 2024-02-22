@@ -15,6 +15,7 @@ services:
       DATABASE_NAME: ${MYSQL_DATABASE}
     networks:
       - backend
+    restart: always
 
 
   nginx:
