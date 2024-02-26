@@ -1,11 +1,10 @@
-#qimport pymysql
+# qimport pymysql
 import os
 
 from boto3 import dynamodb
 from flask import Flask, jsonify
 import boto3
 from botocore.exceptions import ClientError
-
 
 app = Flask(__name__)
 
@@ -21,7 +20,6 @@ dynamodb_table_name = os.environ.get('users_list')
 
 ynamodb = boto3.resource('dynamodb', region_name=dynamodb_region)
 table = dynamodb.Table(dynamodb_table_name)
-
 
 
 @app.route('/')
@@ -46,7 +44,7 @@ def list_users():
         users = response['Items']
     except ClientError as e:
         print(e.response['Error']['Message'])
-        return jsonify({"error":e.response['Error']['Message']}),500
+        return jsonify({"error": e.response['Error']['Message']}), 500
     return jsonify(users)
 
 
