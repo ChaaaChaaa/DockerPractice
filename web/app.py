@@ -16,7 +16,7 @@ app = Flask(__name__)
 # db_name = os.environ.get('MYSQL_DATABASE')
 
 dynamodb_region = os.environ.get('AWS_DEFAULT_REGION')
-dynamodb_table_name = os.environ.get('users_list')
+dynamodb_table_name = os.environ.get('DYNAMODB_TABLE_NAME')
 
 dynamodb = boto3.resource('dynamodb', region_name=dynamodb_region)
 table = dynamodb.Table(dynamodb_table_name)
