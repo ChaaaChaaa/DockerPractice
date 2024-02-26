@@ -3,3 +3,4 @@ FLASK
 PyMySQL==0.10.1
 cryptography
 jinja2
+boto3

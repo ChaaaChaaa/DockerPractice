@@ -1,5 +1,7 @@
-qimport pymysql
+#qimport pymysql
 import os
+
+from boto3 import dynamodb
 from flask import Flask, jsonify
 import boto3
 from botocore.exceptions import ClientError
@@ -14,10 +16,10 @@ app = Flask(__name__)
 # db_password = os.environ.get('MYSQL_PASSWORD')
 # db_name = os.environ.get('MYSQL_DATABASE')
 
-dynamodb_region = os.environ.get('ap-northeast-2')
+dynamodb_region = os.environ.get('AWS_DEFAULT_REGION')
 dynamodb_table_name = os.environ.get('users_list')
 
-dynamodb = boto3.resource('dynamodb',region,name=dynamodb_region)
+ynamodb = boto3.resource('dynamodb', region_name=dynamodb_region)
 table = dynamodb.Table(dynamodb_table_name)
 
 
