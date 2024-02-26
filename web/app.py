@@ -1,9 +1,9 @@
 # qimport pymysql
 import os
 
-from boto3 import dynamodb
-from flask import Flask, jsonify
+import os
 import boto3
+from flask import Flask, jsonify
 from botocore.exceptions import ClientError
 
 app = Flask(__name__)
