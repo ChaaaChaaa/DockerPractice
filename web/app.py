@@ -22,6 +22,10 @@ dynamodb = boto3.resource('dynamodb', region_name=dynamodb_region)
 table = dynamodb.Table(dynamodb_table_name)
 
 
+@app.route('/health')
+def health():
+    return 'OK', 200
+
 @app.route('/')
 def hello_world():
     return 'Hello World!'
